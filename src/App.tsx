@@ -6,8 +6,8 @@ function App() {
 
   return (
     <>
-      <div className='flex h-screen w-60 justify-center bg-blue-600'>
-        hey boi
+      <div className='flex min-h-screen bg-gray-100 items-center justify-center p-4'>
+        <h1>MEMORY GAME</h1>
       </div>
         
     </>
