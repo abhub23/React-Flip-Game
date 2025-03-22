@@ -1,10 +1,12 @@
 import { create } from "zustand";
 
-type Grid = {
+type Gridtype = {
     gridsize: number;
+    setGridsize: (size: number)
 }
-export const useGridsize = create<Grid>((set) => ({
+export const useGridsize = create<Gridtype>((set) => ({
     gridsize: 2,
+    setgridSize: (size) => set({gridzize: size})
 }))
 
 
@@ -15,9 +17,9 @@ export const useGridsize = create<Grid>((set) => ({
 
 
 
-type Won = {
+type Wontype = {
     won: boolean;
 }
-export const useWon = create<Won>((set) => ({
+export const useWon = create<Wontype>((set) => ({
     won: false,
 }))
