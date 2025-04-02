@@ -1,54 +1,87 @@
-<<<<<<< HEAD
-# React + TypeScript + Vite
+# Zustand State and `set` Explained
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 1. Ways to Update State Using `set`
+Zustand provides two ways to update state inside the store:
 
-Currently, two official plugins are available:
+### a) Functional Update (`set((state) => {...})`)
+- Use this **when your update depends on the previous state**.
+- It ensures that you always modify the latest state.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```ts
+set((state) => ({ count: state.count + 1 }));
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+> **Why?** The function receives `state`, so we can safely modify `count` based on the latest state.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+---
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### b) Direct Object Update (`set({...})`)
+- Use this when updating state **without depending on the previous state**.
+
+```ts
+set({ user: newUser });
 ```
-=======
-# React-Flip-Game
->>>>>>> cf478db305f72449652a013a657c34b28432fd0c
+
+> **Why?** We don’t need the previous state here, just replacing `user`.
+
+---
+
+## 2. Parentheses in `set((state) => {...})`
+- When returning an object in an **arrow function**, **wrap it in `()`** to avoid JavaScript confusion.
+
+✅ **Correct:**
+```ts
+set((state) => ({ count: state.count + 1 })); // ✅ Parentheses required
+```
+
+❌ **Incorrect (No `return`, JavaScript thinks `{}` is a function block)**
+```ts
+set((state) => { count: state.count + 1 }); // ❌ Syntax error!
+```
+
+If using a function block `{}`, explicitly use `return`:
+```ts
+set((state) => {
+  return { count: state.count + 1 };
+});
+```
+
+---
+
+## 3. When to Use Which?
+| **Approach** | **When to Use?** | **Example** |
+|-------------|----------------|-----------|
+| `set((state) => ({ ... }))` | If updating based on previous state | `set((state) => ({ count: state.count + 1 }))` |
+| `set({ ... })` | If replacing state without needing the old state | `set({ user: newUser })` |
+
+---
+
+## 4. Why No Parentheses in Some Cases?
+- If an arrow function uses `{}`, it’s treated as a function **block** and requires an explicit `return`.
+- If it’s **one line returning an object**, wrap it in `()`.
+
+✅ **With `{}` (Needs `return`)**
+```ts
+set((theme) => {
+  const toggle = theme.isDarkmode === "dark" ? "light" : "dark";
+  localStorage.setItem("theme", toggle);
+  return { isDarkmode: toggle }; // ✅ Explicit return needed
+});
+```
+
+✅ **With `()` (Implicit Return)**
+```ts
+set((state) => ({ count: state.count + 1 })); // ✅ No `return` needed
+```
+
+---
+
+## Summary
+- Use `set((state) => ({ ... }))` when updating based on previous state, and `set({ ... })` when setting a new value directly.
+- Use `()` around objects when using an **implicit return** in arrow functions.
+- If using `{}`, you **must** use `return`.
+
+---
+
+🚀 **Now you have a complete reference for Zustand state updates!**
+
