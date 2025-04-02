@@ -1,83 +1,94 @@
 import { create } from "zustand";
 
-{/*Grid State */ }
+{
+  /*Grid State */
+}
 type Gridtype = {
-    gridSize: number;
-    setgridSize: (size: number) => void;
-    handleGridSize: (e: React.ChangeEvent<HTMLInputElement>) => void
-}
+  gridSize: number;
+  setgridSize: (size: number) => void;
+  handleGridSize: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
 export const useGridsize = create<Gridtype>((set) => ({
-    gridSize: 4,
+  gridSize: 4,
 
-    setgridSize: (size: number) => {
-        if (size >= 2 && size <= 10) {
-            set({ gridSize: size })
-        }
-    },
+  setgridSize: (size: number) => {
+    if (size >= 2 && size <= 12) {
+      set({ gridSize: size });
+    }
+  },
 
-    handleGridSize: (e: React.ChangeEvent<HTMLInputElement>) => {
-        const size = parseInt(e.target.value);
-        if (!isNaN(size)){
-            useGridsize.getState().setgridSize(size)
-        }
-    },
+  handleGridSize: (e: React.ChangeEvent<HTMLInputElement>) => {
+    const size = parseInt(e.target.value);
+    if (!isNaN(size)) {
+      useGridsize.getState().setgridSize(size);
+    }
+  },
+}));
+
+{
+  /*Card State */
 }
-))
-
-{/*Card State */ }
 type Card = {
-    id: number;
-    num: number;
-}
+  id: number;
+  num: number;
+};
 
 type Cardtype = {
-    cards: Card[];
-    setCards: (size: Card[]) => void;
-}
+  cards: Card[];
+  setCards: (size: Card[]) => void;
+};
 
 export const useCards = create<Cardtype>((set) => ({
-    cards: [],
-    setCards: (newCards) => set({ cards: newCards })
-}))
+  cards: [],
+  setCards: (newCards) => set({ cards: newCards }),
+}));
 
-{/*Cardflipped State */ }
+{
+  /*Cardflipped State */
+}
 type Flippedtype = {
-    flipped: number[];
-    setFlipped: (newFlip: []) => unknown
-}
+  flipped: number[];
+  setFlipped: (newFlip: []) => unknown;
+};
 export const useFlipped = create<Flippedtype>((set) => ({
-    flipped: [],
-    setFlipped: (newFlip) => set({ flipped: newFlip })
-}))
+  flipped: [],
+  setFlipped: (newFlip) => set({ flipped: newFlip }),
+}));
 
-{/*Solved State */ }
-type Solvedtype = {
-    solved: number[];
-    setSolved: (solvedArr: []) => unknown;
+{
+  /*Solved State */
 }
+type Solvedtype = {
+  solved: number[];
+  setSolved: (solvedArr: []) => unknown;
+};
 
 export const useSolved = create<Solvedtype>((set) => ({
-    solved: [],
-    setSolved: (solvedArr) => set({ solved: solvedArr })
-}))
+  solved: [],
+  setSolved: (solvedArr) => set({ solved: solvedArr }),
+}));
 
-{/*Won State */ }
+{
+  /*Won State */
+}
 type Wontype = {
-    won: boolean;
-    setWon: (status: boolean) => void;
-}
+  won: boolean;
+  setWon: (status: boolean) => void;
+};
 export const useWon = create<Wontype>((set) => ({
-    won: false,
-    setWon: (status) => set({ won: status })
-}))
+  won: false,
+  setWon: (status) => set({ won: status }),
+}));
 
-{/*Disabled State */ }
-type Disabledtype = {
-    disabled: boolean;
-    setDisabled: (state: boolean) => void;
+{
+  /*Disabled State */
 }
+type Disabledtype = {
+  disabled: boolean;
+  setDisabled: (state: boolean) => void;
+};
 
 export const useDisabled = create<Disabledtype>((set) => ({
-    disabled: false,
-    setDisabled: (state: boolean) => set({ disabled: state })
-}))
+  disabled: false,
+  setDisabled: (state: boolean) => set({ disabled: state }),
+}));
