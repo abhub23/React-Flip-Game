@@ -1,11 +1,18 @@
-import memorygame from '../assets/memory game.webp'
+import { useNavigate } from "react-router-dom";
+import Button from '../components/Button';
+
 const LandingPage = () => {
-    return (
-        <>
-        <img className="h-screen w-screen" src={memorygame}/>
-        </>
-    )
-}
+  const navigate = useNavigate();
+  const handleNaigate = () => {
+    navigate("/game");
+  };
+  return (
+    <>
+      <div className="h-screen w-screen flex font-mono justify-center items-center">
+        <Button onClick={handleNaigate} />
+      </div>
+    </>
+  );
+};
 
-
-export default LandingPage
+export default LandingPage;
