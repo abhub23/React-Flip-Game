@@ -48,11 +48,11 @@ export const useCards = create<Cardtype>((set) => ({
 }
 type Flippedtype = {
   flipped: number[];
-  setFlipped: (newFlip: []) => unknown;
+  setFlipped: (newFlip: number[]) => unknown;
 };
 export const useFlipped = create<Flippedtype>((set) => ({
   flipped: [],
-  setFlipped: (newFlip) => set({ flipped: newFlip }),
+  setFlipped: (newFlip: number[]) => set({ flipped: newFlip }),
 }));
 
 {
@@ -60,12 +60,12 @@ export const useFlipped = create<Flippedtype>((set) => ({
 }
 type Solvedtype = {
   solved: number[];
-  setSolved: (solvedArr: []) => unknown;
+  setSolved: (solvedArr: number[]) => unknown;
 };
 
 export const useSolved = create<Solvedtype>((set) => ({
   solved: [],
-  setSolved: (solvedArr) => set({ solved: solvedArr }),
+  setSolved: (solvedArr: number[]) => set({ solved: solvedArr }),
 }));
 
 {
@@ -77,7 +77,7 @@ type Wontype = {
 };
 export const useWon = create<Wontype>((set) => ({
   won: false,
-  setWon: (status) => set({ won: status }),
+  setWon: (status: boolean) => set({ won: status }),
 }));
 
 {
