@@ -52,7 +52,7 @@ const Game = () => {
   }, [gridSize]);
 
   useEffect(() => {
-    if (solved.length === cards.length) {
+    if (solved.length === cards.length && cards.length > 0) {
       setWon(true)
     }
   }, [solved])
@@ -123,10 +123,10 @@ const Game = () => {
           {/*Game Board */}
 
           <motion.div
-       
-      initial={{ opacity: 0 , y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
             className={"grid gap-4  lg:mt-[60px] "}
             style={{
               gridTemplateColumns: `repeat(${gridSize}, minmax(0,1fr))`,
@@ -149,10 +149,16 @@ const Game = () => {
               );
             })}
           </motion.div>
+
           {won && <div className="lg:p-[2px] lg:h-[40px] lg:mt-[24px] lg:text-[32px] font-semibold text-green-500 animate-bounce"> You won </div>}
-          {<button className="lg:p-[4px] lg:px-[18px] lg:h-[40px] lg:mt-[28px] lg:mb-[14px] lg-h-[80px] text-white bg-black dark:text-black dark:bg-white  border-1 border-black rounded-[6px] dark:border-white lg:text-[22px] font-semibold cursor-pointer"
-            onClick={initializeGame}>{won ? 'Play again' : 'Reset'}
-          </button>}
+
+          {<motion.button
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="lg:p-[4px] lg:px-[18px] lg:h-[40px] lg:mt-[28px] lg:mb-[14px] lg-h-[80px] text-white bg-black dark:text-black dark:bg-white  border-1 border-black rounded-[6px] dark:border-white lg:text-[22px] font-semibold cursor-pointer"
+            onClick={initializeGame}>{won == true ? 'Play again' : 'Reset'}
+          </motion.button>}
           <Footer />
         </div>
       </div>
