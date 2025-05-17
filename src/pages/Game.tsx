@@ -100,12 +100,12 @@ const Game = () => {
       <div>
         <div className={`flex flex-col min-h-screen bg-red-50 dark:bg-zinc-950 items-center justify-center p-4 font-mono`}>
           <div className="fixed mb-2 flex justify-center items-end">
-            <h1 className='fixed top-6 mb-2 text-2xl text-black dark:text-white'>MEMORY GAME</h1>
-            <p className="fixed right-10 top-6 h-[24px] dark:text-white mb-2" onClick={handleTheme}>{theme == 'light' ? <MoonIcon className="h-[20px] w-[30px] cursor-pointer" /> : <SunIcon className="h-[20px] w-[30px] cursor-pointer" />}</p>
+            <h1 className='fixed top-6 mb-2 lg:text-[24px] text-[18px] text-black dark:text-white'>MEMORY GAME</h1>
+            <p className="fixed lg:right-10 right-4 top-6 lg:h-[24px] h-[20px] dark:text-white mb-2" onClick={handleTheme}>{theme == 'light' ? <MoonIcon className="h-[20px] w-[30px] cursor-pointer" /> : <SunIcon className="h-[20px] w-[30px] cursor-pointer" />}</p>
           </div>
 
-          <div className="fixed top-[60px]  font-thin flex items-center justify-center">
-            <label htmlFor="gridSize" className='mr-2 text-xl text-black dark:text-white'>
+          <div className="fixed top-[60px] font-thin flex items-center justify-center">
+            <label htmlFor="gridSize" className='mr-2 lg:text-xl text-14px text-black dark:text-white'>
               Select Size: ({gridSize} x {gridSize}){" "}
             </label>
             <input
@@ -150,13 +150,13 @@ const Game = () => {
             })}
           </motion.div>
 
-          {won && <div className="lg:p-[2px] lg:h-[40px] lg:mt-[24px] lg:text-[32px] font-semibold text-green-500 animate-bounce"> You won </div>}
+          {won && <div className="lg:p-[2px] p-[2px] lg:h-[40px] h-[30px] lg:mt-[24px] mt-[14px] lg:text-[32px] text-[20px] font-semibold text-green-500 animate-bounce"> You won </div>}
 
           {<motion.button
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="lg:p-[4px] lg:px-[18px] lg:h-[40px] lg:mt-[28px] lg:mb-[14px] lg-h-[80px] text-white bg-black dark:text-black dark:bg-white  border-1 border-black rounded-[6px] dark:border-white lg:text-[22px] font-semibold cursor-pointer"
+            className="lg:p-[4px] p-[4px] lg:px-[18px] px-[10px] lg:h-[40px] h-[30px] lg:mt-[28px] mt-[14px] lg:mb-[14px] mb-[6px] text-white bg-black dark:text-black dark:bg-white  border-1 border-black rounded-[6px] dark:border-white lg:text-[22px] text-[14px] font-semibold cursor-pointer"
             onClick={initializeGame}>{won == true ? 'Play again' : 'Reset'}
           </motion.button>}
           <Footer />
