@@ -51,6 +51,8 @@ const Button: React.FC<Btntypes> = ({ onClick }) => {
 const StyledWrapper = styled.div`
   .cta {
     display: flex;
+    align-items: center;
+    flex-wrap: wrap;
     padding: 11px 33px;
     text-decoration: none;
     font-size: 30px;
@@ -121,15 +123,34 @@ const StyledWrapper = styled.div`
     0% {
       fill: white;
     }
-
     50% {
       fill: #fbc638;
     }
-
     100% {
       fill: white;
     }
   }
+
+  @media (max-width: 480px) {
+    .cta {
+      padding: 8px 16px;
+      font-size: 18px;
+      background: #6225e6  
+      box-shadow: 5px 5px 0 black;
+    }
+
+    .second {
+      width: 16px;
+      margin-left: 10px;
+      top: 10%;
+    }
+
+    svg {
+      width: 30px;
+      height: 24px;
+    }
+  }
 `;
+
 
 export default Button;
