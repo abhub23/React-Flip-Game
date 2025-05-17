@@ -1,16 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import Button from '../components/Button';
+import {motion} from 'motion/react'
 
 const LandingPage = () => {
   const navigate = useNavigate();
-  const handleNaigate = () => {
+  const handleNavigate = () => {
     navigate("/game");
   };
   return (
     <>
-      <div className="h-screen w-screen flex font-mono justify-center items-center">
-        <Button onClick={handleNaigate} />
-      </div>
+      <motion.div
+      initial={{ opacity: 0 , y: 80 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="fixed inset-0 flex justify-center items-center font-mono overflow-hidden">
+        <Button onClick={handleNavigate} />
+      </motion.div>
     </>
   );
 };
