@@ -157,7 +157,7 @@ const Game = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="lg:p-[4px] p-[4px] lg:px-[18px] px-[10px] lg:h-[40px] h-[30px] lg:mt-[28px] mt-[14px] lg:mb-[14px] mb-[6px] text-white bg-black dark:text-black dark:bg-white  border-1 border-black rounded-[6px] dark:border-white lg:text-[22px] text-[14px] font-semibold cursor-pointer"
-            onClick={initializeGame}>{won == true ? 'Play again' : 'Reset'}
+            onClick={initializeGame}>{won ? 'Play again' : 'Reset'}
           </motion.button>}
           <Footer />
         </div>
